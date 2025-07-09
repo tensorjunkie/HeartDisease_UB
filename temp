@@ -1,0 +1,49 @@
+
+import undetected_chromedriver as uc
+from selenium.webdriver.chrome.options import Options
+import random
+from selenium.webdriver.common.by import By
+# Create options
+def xx():
+    options = uc.ChromeOptions()
+    options.add_argument("--incognito")
+    options.add_argument("--no-sandbox")
+    options.add_argument("--disable-dev-shm-usage")
+    options.add_argument("--disable-blink-features=AutomationControlled")
+    options.add_argument("--disable-infobars")
+    options.add_argument("--disable-extensions")
+    options.add_argument("--start-maximized")
+    options.add_argument("--lang=en-US")
+
+    # Optional: Use a real/human User-Agent
+   
+
+    # Launch undetected Chrome
+    driver = uc.Chrome(options=options,version_main=137)
+
+
+    return driver
+# Test it
+xp='//*[@id="close_entrance_terms"]'
+import time
+drivers =[]
+for i in range(10):
+    print('viewer',i)
+    driver = xx()
+    print('Driver init success')
+    drivers.append(driver)
+    driver.get('https://chaturbate.com/kittyy_rinna/??')
+    print("Opened Rina's CB")
+    time.sleep(2)
+    try:
+        driver.find_element(By.XPATH, xp).click()
+        print('Clicked agree successfully')
+    except:
+        print('failed trying again in ......')
+        time.sleep(1)
+        driver.find_element(By.XPATH, xp).click()
+
+
+time.sleep(2000)
+for d in drivers:
+    d.quit()
